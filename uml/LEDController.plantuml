@@ -1,0 +1,71 @@
+@startuml
+
+class LedController{
+    -currentColor:Integer
+    -saveTime:Timer
+    -eepromHandler:*EEPROMHandler
+    -transitionHandler:*TransitionHandler
+    ..
+    +LedController(eeprom:*EEPROMHandler, transition:*TransitionHandler)
+    +turnOff()
+    +turnOn()
+    +setColorWithTransition(Integer:color, Transition:transition)
+    --Setter--
+    +setColor(Integer:color)
+    +setBrightness(Integer:brightness)
+    --Getter--
+    +getcurrentColor():Integer
+
+    --save routine--
+    +loop()
+}
+
+enum Transition{
+    ColorToColor
+    fadeTransition
+}
+
+enum TransitionStates{
+    STBY
+    STATE1
+    STATE2
+    STATE3
+}
+
+enum TransitionMode{
+    Standard,
+    Animation
+}
+
+class TransitionHandler{
+    -currentColor:Integer
+    -targetColor:Integer
+    -currentBrightness:Integer
+    -targetBrightness:Integer
+    ..
+    __constructor__
+    +TransitionHandler(controller:*LedController)
+
+    --transition methods--
+    +playTransition(targetColor:Integer, Transition:transition)
+
+    --state machines--
+    -colorToColorTransition()
+    -colorToColorStep()
+    -fadeTransion()
+    --routine--
+    +loop()
+}
+
+
+
+TransitionHandler "1" <--> "1" LedController 
+
+LedController "1" -> "1"  EEPROMHandler
+
+Transition <- TransitionHandler
+
+TransitionHandler -> TransitionStates
+
+TransitionHandler -> TransitionMode
+@enduml

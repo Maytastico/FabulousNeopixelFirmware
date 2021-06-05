@@ -1,0 +1,16 @@
+@startuml
+STDBY:Is a state where notthing happens
+STDBY --> FADE_OUT 
+FADE_OUT : Changes the variable so that the
+FADE_OUT:  brightness becomes the minimal brightness
+
+FADE_OUT --> SET_COLOR : If the color value is minimal
+SET_COLOR : Configures the instance so that it will Fade 
+SET_COLOR : to the old brightness with the new color value
+
+SET_COLOR --> FADE_IN : When SET_COLOR changes the State
+FADE_IN : Sets the brightness to the old values
+
+FADE_IN --> STDBY : If the old brightness is achieved
+
+@enduml

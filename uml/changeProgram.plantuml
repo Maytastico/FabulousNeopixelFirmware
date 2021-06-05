@@ -1,0 +1,10 @@
+@startuml
+
+actor User
+participant "Program Manager" as programMgr
+
+User -> programMgr: setProgram()
+
+
+
+@enduml

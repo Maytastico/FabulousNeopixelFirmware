@@ -1,0 +1,20 @@
+@startuml
+
+actor User
+participant "LedController" as led
+participant "TransitionHandler" as transition
+
+User -> led : setColorWithTransition(5555, FadeTo)
+activate led
+led -> transition : playTransition(5555, FadeTo)
+activate transition
+transition -> led : getCurrentColor()
+activate led
+led -->transition : 126
+destroy led
+transition -> led : setColor(5555)
+destroy transition
+destroy led
+
+
+@enduml
