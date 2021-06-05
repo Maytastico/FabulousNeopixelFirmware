@@ -20,7 +20,7 @@ You need:
 
 1. You need to install Visual Studio Code
 2. Then you will need to install PlatformIO as an extension
-3. After that you can specify what infrared remote you have and what type of leds.
+3. After that you can specify what infrared remote you have and how many and also what type of leds you want to use.
 4. Then you can compile and program your arduino with it.
 5. You have a functional Neopixel controler
 
