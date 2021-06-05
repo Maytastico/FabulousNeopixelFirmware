@@ -22,6 +22,8 @@ You need:
 
 Notice: A condensator as well as a resistor are for good measure to protect the first led on a stripe you don't have to use it, if you work with few Neopixels.
 
+
+
 # How to install
 
 1. You need to install Visual Studio Code
@@ -29,6 +31,16 @@ Notice: A condensator as well as a resistor are for good measure to protect the 
 3. After that you can specify what infrared remote you have and how many and also what type of leds you want to use.
 4. Then you can compile and program your arduino with it.
 5. You have a functional Neopixel controler
+
+# What kind of Receivers are already supported
+
+I used receivers from commercial LED stripe kits. If yours look like these below, they should probably work with those codes I used.
+
+## Remote with 22 Buttons
+
+## Remote with 44 Buttons
+
+
 
 # Contact
 
