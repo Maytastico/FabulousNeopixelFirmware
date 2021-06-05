@@ -1,11 +1,15 @@
 # FabulousNeopixelFirmware
-This lets you control your leds with a infrared remote, a Arduino and a infrared receiver, either a fancy animation or a simple static color. I ever wanted a simple firmware to control my neopixel lights so I programmed it myself. It is based on the Adafruit Neopixel library and can be extended for your needs.
+This lets you control your leds with a infrared remote, a Arduino and a infrared receiver, either a fancy animation or a simple static color. I ever wanted a simple firmware to control my neopixel lights so I programmed it myself. It is based on the [Adafruit Neopixel library](https://github.com/adafruit/Adafruit_NeoPixel) and can be extended for your needs.
 
 # How build
 
-[Prototyping Board Design](https://github.com/MacaroniDamage/FabulousNeopixelFirmware/blob/main/FabolousNeopixelFirmware_Steckplatine.png)
+Prototyping Design
 
-[PCB Design](https://github.com/MacaroniDamage/FabulousNeopixelFirmware/blob/main/FabolousNeopixelFirmware_Schaltplan.png)
+![Prototyping Board Design](https://raw.githubusercontent.com/MacaroniDamage/FabulousNeopixelFirmware/main/FabolousNeopixelFirmware_Steckplatine.png)
+
+PCB Design
+
+![PCB Design](https://raw.githubusercontent.com/MacaroniDamage/FabulousNeopixelFirmware/main/FabolousNeopixelFirmware_Schaltplan.png)
 
 You need:
 
@@ -15,6 +19,8 @@ You need:
 4. Electrolyt Condensator e.q 220 nF
 5. Resistor with at least 470Ohm
 6. Arduino Nano or similar
+
+Notice: A condensator as well as a resistor are for good measure to protect the first led on a stripe you don't have to use it, if you work with few Neopixels.
 
 # How to install
 
