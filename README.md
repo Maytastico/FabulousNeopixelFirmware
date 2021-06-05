@@ -38,9 +38,11 @@ I used receivers from commercial LED stripe kits. If yours look like these below
 
 ## Remote with 22 Buttons
 
+![22 Button Remote](https://raw.githubusercontent.com/MacaroniDamage/FabulousNeopixelFirmware/main/22Buttons.jpg)
+
 ## Remote with 44 Buttons
 
-
+![44 Buttons](https://raw.githubusercontent.com/MacaroniDamage/FabulousNeopixelFirmware/main/44Buttons.jpg)
 
 # Contact
 
