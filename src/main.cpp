@@ -10,6 +10,7 @@
 #include "RandomColorFade.h"
 #include "RandomColor.h"
 #include "StarLight.h"
+#include "Pride.h"
 //Specifiy your remote here
 #include "Button_Definition_24.h"
 
@@ -47,6 +48,8 @@ RandomColorFade randomColorFade;
 //Executes a program that sets
 //every pixel to a random color
 RandomColor randomColor;
+
+Pride prideAnimation;
 
 StarLight starLight;
 
@@ -95,6 +98,8 @@ void setup()
 
   starLight.begin(&pixels);
 
+  prideAnimation.begin(&pixels);
+
   debug.startTimer(1000);
 }
 
@@ -116,6 +121,8 @@ void loop()
 
   //   debug.startTimer(1000);
   // }
+
+
 
   // receive and decode IR data
   if (irReceiver.isDataReady())
@@ -165,6 +172,12 @@ void loop()
       rainbow.loop();
     }
     break;
+  case PRIDE:
+    if (transitionHandler.getCurrentTransitionState() == STDBY || transitionHandler.getCurrentTransitionState() == STATE_3)
+    {
+      prideAnimation.loop();
+    }
+  break;
   }
 }
 
@@ -241,11 +254,17 @@ void processIRData()
     }
     else
     {
-      transitionHandler.setTransitionMode(ANIMATION);
+      //Random Color Frame
+      /* transitionHandler.setTransitionMode(ANIMATION);
       pixels.setUpdateColorWhenBrightnessChanges(false);
       transitionHandler.playTransition(FADE_TO);
       randomColor.resetStateMachine();
-      manager.setProgram(RANDOM_COLOR_FRAME);
+      manager.setProgram(RANDOM_COLOR_FRAME); */
+
+      //Pride Animation
+      transitionHandler.setTransitionMode(ANIMATION);
+      pixels.setUpdateColorWhenBrightnessChanges(false);
+      manager.setProgram(PRIDE);
     }
     break;
 

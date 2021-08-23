@@ -213,6 +213,15 @@ public:
      */
     void displayArray(uint32_t *frame, uint8_t frameElements, int position, boolean override);
 
+    /**
+     * @brief Displayes a array and streches the segments trough the whole stripe lenght.
+     *        It is important to set the right number of leds so the segments will be displayed right.
+     * 
+     * @param frame 
+     * @param frameElements 
+     */
+    void displayArrayStrech(uint32_t *frame, uint8_t frameElements);
+
     //Setter
     /**
      * @brief Sets the status of the instance that decides whether 

@@ -15,7 +15,8 @@ enum Program
   RAINBOW,
   RANDOM,
   RANDOM_COLOR_FRAME,
-  STAR_LIGHT
+  STAR_LIGHT,
+  PRIDE
 };
 
 const uint8_t ANIMATION_UPDATE_RATE = 100;
