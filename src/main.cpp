@@ -98,7 +98,7 @@ void setup()
 
   starLight.begin(&pixels);
 
-  prideAnimation.begin(&pixels);
+  prideAnimation.begin(&pixels, &memory);
 
   debug.startTimer(1000);
 }

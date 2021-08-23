@@ -27,6 +27,7 @@ private:
      * 
      */
     enum PrideBanners{
+        NONE,
         PRIDE,
         LESBIAN,
         BI,
@@ -39,9 +40,11 @@ private:
 
     LedController *_pController = nullptr;
 
+    EpromHandler *_pStorage = nullptr;
+
     PrideBanners currentBanner = PRIDE;
 
-    boolean bannerChanged = false;
+    boolean bannerChanged = true;
 
     Timer cycle;
 
@@ -49,8 +52,12 @@ private:
 public:
     Pride(){}
 
-    void begin(LedController *_controller){
+    void begin(LedController *_controller, EpromHandler *_storage){
         this->_pController = _controller;
+        this->_pStorage = _storage;
+        Serial.println("Last Banner was: " + String(_pStorage->getPrideBanner()));
+        if(_pStorage->getPrideBanner() != 0)
+            this->currentBanner = static_cast<PrideBanners>(_storage->getPrideBanner());
     };
 
     void changeFlag();

@@ -4,9 +4,10 @@ void Pride::changeFlag(){
     uint8_t banner =  static_cast<uint8_t>(currentBanner);
     banner++;
     if(banner >= static_cast<uint8_t>(lastBanner)){
-        banner = 0;
+        banner = 1;
     }
     currentBanner = static_cast<PrideBanners>(banner);
+    _pStorage->storePrideBanner(banner);
     bannerChanged = true;
 }
 
@@ -34,6 +35,7 @@ void Pride::processChange(){
     default:
         break;
     }
+    
     bannerChanged = false;
 }
 

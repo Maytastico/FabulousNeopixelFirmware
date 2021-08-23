@@ -17,6 +17,7 @@
 const uint8_t DEF_BRIGHTNESS = 127;
 const uint32_t DEF_COLOR = 255; // Blue
 const uint8_t DEF_DEFAULTPROGRAM = 1;
+const uint8_t DEF_PRIDEBANNER = 1;
 
 class EpromHandler
 {
@@ -26,6 +27,7 @@ private:
     uint8_t brightness;
     uint32_t color;
     uint8_t programStatus;
+    uint8_t prideBanner;
   };
 
   /**
@@ -52,7 +54,7 @@ public:
    * @param color 
    * @param programmStatus 
    */
-  void getLightData(uint8_t *brightness, uint32_t *color, uint8_t *programmStatus) const;
+  void getLightData(uint8_t *brightness, uint32_t *color, uint8_t *programmStatus, uint8_t *prideBanner) const;
 
   /**
    * @brief Return the brightness that is saved inside of this object
@@ -74,6 +76,13 @@ public:
  * @return uint8_t 
  */
   uint8_t getSavedProgram();
+
+  /**
+   * @brief Get the Pride Banner object
+   * 
+   * @return uint8_t 
+   */
+  uint8_t getPrideBanner();
 
   /**
    * @brief Takes the brightness that was handed over and saves it into the
@@ -99,6 +108,12 @@ public:
    */
   void storeProgrammStatus(uint8_t pProgrammstatus);
 
+  /**
+   * @brief Stores the set pride banner
+   * 
+   * @param pPrideBanner 
+   */
+  void storePrideBanner(uint8_t pPrideBanner);
 };
 
 #endif // _EEPROM_HANDLER_H_
