@@ -142,6 +142,22 @@ void LedController::displayArray(uint32_t *frame, uint8_t frameElements, int beg
   this->show();
 }
 
+void LedController::displayArrayStrech(uint32_t *frame, uint8_t frameElements){
+  uint8_t frameIndex = 0;
+  uint8_t fragmentIndex = 0;
+  uint8_t fragmentLenght = this->numPixels()/frameElements;
+  for (uint8_t i = 0; i < this->numPixels(); i++)
+  { 
+    if(fragmentIndex>=fragmentLenght){
+      frameIndex++;
+      fragmentIndex = 0;
+    }
+    this->setPixelColor(i, frame[frameIndex]);
+    fragmentIndex++;
+  }
+  this->show();
+}
+
 //returns the current color value
 uint32_t LedController::getCurrentColor()
 {

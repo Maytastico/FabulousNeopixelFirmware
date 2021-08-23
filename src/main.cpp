@@ -233,39 +233,53 @@ void processIRData()
     }
     break;
   case CHANGE_TO_RANDOM:
-    if (manager.getCurrentProgram() == RANDOM)
-    {
-      manager.setProgram(SET_MANUEL_COLOR);
-      pixels.changeColorWithTransition(memory.getSavedColor(), DEFAULT_TRANSITION);
-    }
-    else
-    {
-      transitionHandler.setTransitionMode(ANIMATION);
-      pixels.setUpdateColorWhenBrightnessChanges(false);
-      manager.setProgram(RANDOM);
-    }
-    break;
+    //Random Color
+    // if (manager.getCurrentProgram() == RANDOM)
+    // {
+    //   manager.setProgram(SET_MANUEL_COLOR);
+    //   pixels.changeColorWithTransition(memory.getSavedColor(), DEFAULT_TRANSITION);
+    // }
+    // else
+    // {
+    //   transitionHandler.setTransitionMode(ANIMATION);
+    //   pixels.setUpdateColorWhenBrightnessChanges(false);
+    //   manager.setProgram(RANDOM);
+    // }
 
-  case CHANGE_TO_WALK:
-    if (manager.getCurrentProgram() == RANDOM_COLOR_FRAME)
+    //Pride Flag
+    if (manager.getCurrentProgram() == PRIDE)
     {
-      manager.setProgram(SET_MANUEL_COLOR);
-      pixels.changeColorWithTransition(memory.getSavedColor(), DEFAULT_TRANSITION);
+      //Pride
+      prideAnimation.changeFlag();
     }
     else
     {
-      //Random Color Frame
-      /* transitionHandler.setTransitionMode(ANIMATION);
-      pixels.setUpdateColorWhenBrightnessChanges(false);
       transitionHandler.playTransition(FADE_TO);
-      randomColor.resetStateMachine();
-      manager.setProgram(RANDOM_COLOR_FRAME); */
-
-      //Pride Animation
       transitionHandler.setTransitionMode(ANIMATION);
       pixels.setUpdateColorWhenBrightnessChanges(false);
       manager.setProgram(PRIDE);
     }
+    break;
+
+  case CHANGE_TO_WALK:
+    //Random Color Frame
+    if (manager.getCurrentProgram() == RANDOM_COLOR_FRAME)
+    {
+      manager.setProgram(SET_MANUEL_COLOR);
+      pixels.changeColorWithTransition(memory.getSavedColor(), DEFAULT_TRANSITION);
+
+    }
+    else
+    {
+      
+      transitionHandler.setTransitionMode(ANIMATION);
+      pixels.setUpdateColorWhenBrightnessChanges(false);
+      transitionHandler.playTransition(FADE_TO);
+      randomColor.resetStateMachine();
+      manager.setProgram(RANDOM_COLOR_FRAME);
+    }
+
+    
     break;
 
   case CHANGE_TO_FLASH:
