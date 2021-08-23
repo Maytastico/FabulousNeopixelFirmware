@@ -1,7 +1,7 @@
 /**
  * @file TransitionHandler.h
  * @author MacaroniDamage
- * @brief Executes state machine that handel transitions to different
+ * @brief Executes state machine that handels transitions to different
  *        stages
  * @version 0.1
  * @date 2020-12-18
@@ -18,7 +18,7 @@ class LedController;
 #define _TRANSITION_HANDLER_H_
 
 /**
- * @brief Defines wich animation is executed
+ * @brief Defines which animation is executed
  * 
  */
 enum Transition
@@ -61,7 +61,7 @@ enum TransitionMode
  *        brightness will be refreshed
  * 
  */
-const uint16_t BRIGHTNESS_UPDATE = 50;
+const uint16_t BRIGHTNESS_UPDATE = 20;
 
 /**
  * @brief Defines the default transition when the user
@@ -106,19 +106,19 @@ private:
     uint8_t oldBrightness;
 
     /**
-     * @brief Is the pointer that contains the LedController object
+     * @brief Is the pointer that contains a reference to the LedController object
      * 
      */
     LedController *_pController;
 
     /**
-     * @brief Defines wich transition will be executed
+     * @brief Defines which transition will be executed
      * 
      */
     Transition transition;
 
     /**
-     * @brief Defines wich state the transition has
+     * @brief Defines which state the transition has
      * 
      */
     TransitionState transitionState;

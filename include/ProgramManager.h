@@ -24,9 +24,17 @@ class ProgramManager
 {
 private:
   
-
+  /**
+   * @brief Saves the program that will be run inside the statemachine
+   * 
+   */
   Program currentProgram = OFF;
 
+  /**
+   * @brief Saves a reference to the EPROM Handler so changes can be 
+   *        retrieved when the controller loses power
+   * 
+   */
   EpromHandler *storage = nullptr;
 
 public:
@@ -44,7 +52,7 @@ public:
   void setStore(EpromHandler *storage);
 
   /**
-   * @brief Returns the program that was set by the user.
+   * @brief Returns the program that was set by the user and saved inside the object.
    *        It is used to determine what kind of loop will be executed .
    * 
    * @return Program 

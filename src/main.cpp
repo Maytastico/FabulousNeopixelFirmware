@@ -17,7 +17,7 @@
 const uint8_t PowerOn_Pin = 7; //temp
 const byte LED_Pin = 6;
 const uint8_t IR_Pin = 5;
-const uint16_t numPixels = 50;
+const uint16_t numPixels = 30;
 
 //Declarations
 
