@@ -55,7 +55,6 @@ public:
     void begin(LedController *_controller, EpromHandler *_storage){
         this->_pController = _controller;
         this->_pStorage = _storage;
-        Serial.println("Last Banner was: " + String(_pStorage->getPrideBanner()));
         if(_pStorage->getPrideBanner() != 0)
             this->currentBanner = static_cast<PrideBanners>(_storage->getPrideBanner());
     };

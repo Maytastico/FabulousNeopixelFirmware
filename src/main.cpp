@@ -7,18 +7,18 @@
 #include "ProgramManager.h"
 #include "TransitionHandler.h"
 #include "Rainbow.h"
-#include "RandomColorFade.h"
+//#include "RandomColorFade.h"
 #include "RandomColor.h"
 #include "StarLight.h"
 #include "Pride.h"
 //Specifiy your remote here
-#include "Button_Definition_24.h"
+#include "Button_Definition_44.h"
 
 //Pin Definitions
 const uint8_t PowerOn_Pin = 7; //temp
 const byte LED_Pin = 6;
 const uint8_t IR_Pin = 5;
-const uint16_t numPixels = 30;
+const uint16_t numPixels = 52;
 
 //Declarations
 
@@ -43,7 +43,7 @@ LedController pixels(numPixels, LED_Pin, RGBW, NEO_GRBW + NEO_KHZ800, &memory, &
 Rainbow rainbow;
 
 //Executes a random color program
-RandomColorFade randomColorFade;
+//RandomColorFade randomColorFade;
 
 //Executes a program that sets
 //every pixel to a random color
@@ -92,7 +92,7 @@ void setup()
   //------Animation Setup------
   rainbow.begin(&pixels);
 
-  randomColorFade.begin(&pixels);
+  //randomColorFade.begin(&pixels);
 
   randomColor.begin(&pixels, &transitionHandler);
 
@@ -111,16 +111,16 @@ void processIRData(void);
 
 void loop()
 {
-  // if (debug.isTimerReady())
-  // {
-  //   Serial.println(memory.getSavedProgram());
-  //   Serial.println(manager.getCurrentProgram());
-  //   Serial.println(String(memory.getSavedBrightness()));
-  //   Serial.println(String(memory.getSavedColor()));
-  //   Serial.print(pixels.getBrightness());
+  if (debug.isTimerReady())
+  {
+    Serial.println(memory.getSavedProgram());
+    Serial.println(manager.getCurrentProgram());
+    Serial.println(String(memory.getSavedBrightness()));
+    Serial.println(String(memory.getSavedColor()));
+    Serial.print(pixels.getBrightness());
 
-  //   debug.startTimer(1000);
-  // }
+    debug.startTimer(1000);
+  }
 
 
 
@@ -152,7 +152,7 @@ void loop()
     }
     break;
   case RANDOM:
-    randomColorFade.loop();
+    //randomColorFade.loop();
     break;
   case RANDOM_COLOR_FRAME:
     if (transitionHandler.getCurrentTransitionState() == STDBY || transitionHandler.getCurrentTransitionState() == STATE_3)
@@ -402,3 +402,4 @@ void processIRData()
     break;
   }
 }
+

@@ -21,6 +21,7 @@ void LedController::setupController(uint32_t color, uint8_t brightness)
 void LedController::turnOn()
 {
   _pTransition->playTransition(this->oldBrightness, FADE_IN);
+  
 }
 
 void LedController::turnOff()
