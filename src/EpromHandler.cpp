@@ -72,16 +72,11 @@ uint8_t EpromHandler::getPrideBanner()
 }
 
 // store brightness to EEPROM
-void EpromHandler::storeBrightness(uint8_t pBrightness, String programName)
+void EpromHandler::storeBrightness(uint8_t pBrightness)
 {
   if(pBrightness > 10){
     this->actData.brightness = pBrightness;
     EEPROM.put(0, this->actData);
-  }else{
-    Serial.println("-----------------Attention---------------------");
-    Serial.println("Program tried to save a brightness value below");
-    Serial.println("Brightness value: "+ String(pBrightness));
-    Serial.println("-----------------Debug-Data---------------------");
   }
 }
 

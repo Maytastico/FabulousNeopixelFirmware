@@ -90,7 +90,7 @@ public:
    * 
    * @param pBrightness 
    */
-  void storeBrightness(uint8_t pBrightness, String programName);
+  void storeBrightness(uint8_t pBrightness);
 
   /**
    * @brief Takes the Color that was handed over and saves it into the

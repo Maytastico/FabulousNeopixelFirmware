@@ -3,7 +3,7 @@
 void Pride::changeFlag(){
     uint8_t banner =  static_cast<uint8_t>(currentBanner);
     banner++;
-    if(banner > static_cast<uint8_t>(lastBanner)){
+    if(banner > static_cast<uint8_t>(LAST_BANNER_IN_ENUM)){
         banner = 1;
     }
     currentBanner = static_cast<PrideBanners>(banner);
@@ -14,23 +14,23 @@ void Pride::changeFlag(){
 void Pride::processChange(){
     switch (currentBanner)
     {
-    case PRIDE:
-        _pController->displayArrayStrech(pride, 6);
+    case PRIDE_BANNER:
+        _pController->displayArrayStrech(&pride[0], 6);
         break;
-    case LESBIAN:
-        _pController->displayArrayStrech(lesbianPride, 7);
+    case LESBIAN_BANNER:
+        _pController->displayArrayStrech(&lesbianPride[0], 7);
         break;
-    case BI:
-        _pController->displayArrayStrech(biPride, 3);
+    case BI_BANNER:
+        _pController->displayArrayStrech(&biPride[0], 3);
         break;
-    case PAN:
-        _pController->displayArrayStrech(panPride, 3);
+    case PAN_BANNER:
+        _pController->displayArrayStrech(&panPride[0], 3);
         break;
-    case TRANS:
-        _pController->displayArrayStrech(transPride, 5);
+    case TRANS_BANNER:
+        _pController->displayArrayStrech(&transPride[0], 5);
         break;
-    case NONBINARY:
-        _pController->displayArrayStrech(nonBinaryPride, 3);
+    case NONBINARY_BANNER:
+        _pController->displayArrayStrech(&nonBinaryPride[0], 3);
         break;
     default:
         break;
@@ -42,10 +42,7 @@ void Pride::processChange(){
 void Pride::loop(){
     if(cycle.isTimerReady()){
         processChange();
-        cycle.startTimer(cycleRate);
+        cycle.startTimer(ANIMATION_UPDATE_RATE);
     }
 
-    if(bannerChanged){
-        processChange();
-    }
 }

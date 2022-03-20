@@ -31,14 +31,6 @@ public:
   {
     return (millis() - timerStart) > timerTarget;
   }
-
-  void printDebug(String name){
-    Serial.println("0,0,0,0,0,0,0,Timer " + name + " Debug Info,0,0,0,0,0,0,0");
-    Serial.println("Timer Start: " + String(timerStart));
-    Serial.println("Timer Target: " + String(timerTarget));
-    Serial.println("Is accieved: " + String(isTimerReady()));
-    Serial.println("0,0,0,0,0,0,0,Timer Debug Info,0,0,0,0,0,0,0");
-  }
 };
 
 #endif // TIMER_H_

@@ -42,7 +42,7 @@ void TransitionHandler::playTransition(Transition transition)
 
   this->transition = transition;
   this->transitionState = STATE_1;
-  Serial.println("Stage: " + String(transitionState));
+  //Serial.println("Stage: " + String(transitionState));
 }
 
 void TransitionHandler::setTransitionMode(TransitionMode transitionMode)

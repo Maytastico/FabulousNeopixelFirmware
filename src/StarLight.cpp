@@ -85,14 +85,14 @@ void StarLight::starLightStage()
                 stage = DISPLAY_STAR;
             }
         }
-        cycle.startTimer(random(10,50));
+        cycle.startTimer(60);
         
         break;
     }
 }
 
 //Choses one of four falling star types
-uint32_t* StarLight::chooseFallingStar(){
+const uint32_t* StarLight::chooseFallingStar(){
     uint8_t randomStar = random(0,4);
     switch (randomStar)
     {
@@ -118,6 +118,7 @@ uint32_t* StarLight::chooseFallingStar(){
         
         break;
     }
+    return nullptr;
 }
 
 //Choses in which direction a star will be casted
@@ -133,7 +134,7 @@ MoveDirection StarLight::chooseFrameDirection(){
     }
 }
 
-//Will be executed be the processIRData() method in main.cpp
+//Will be executed by the processIRData() method in main.cpp
 //so the states will be reset after a the animation was started
 void StarLight::resetStateMachine()
 {
@@ -145,5 +146,6 @@ void StarLight::loop()
     if (cycle.isTimerReady())
     {
         starLightStage();
-    }
+    } 
+
 }

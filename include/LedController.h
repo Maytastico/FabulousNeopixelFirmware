@@ -6,6 +6,7 @@
 #include "EpromHandler.h"
 #include "Timer.h"
 #include "TransitionHandler.h"
+#include <avr/pgmspace.h>
 
 /**
  * @brief Defines in which mode the Leds will be driven.
@@ -207,11 +208,11 @@ public:
     /**
      * @brief Shows an array on the stripe
      * 
-     * @param frame 
+     * @param frame constant array in program memory
      * @param frameElements 
      * @param position 
      */
-    void displayArray(uint32_t *frame, uint8_t frameElements, int position, boolean override);
+    void displayArray(const uint32_t *frame, uint8_t frameElements, int position, boolean override);
 
     /**
      * @brief Displayes a array and streches the segments trough the whole stripe lenght.
@@ -220,7 +221,7 @@ public:
      * @param frame 
      * @param frameElements 
      */
-    void displayArrayStrech(uint32_t *frame, uint8_t frameElements);
+    void displayArrayStrech(const uint32_t *frame, uint8_t frameElements);
 
     //Setter
     /**

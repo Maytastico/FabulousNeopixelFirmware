@@ -35,7 +35,7 @@ IRrecv irrecv(IR_Pin);
 IRReceiver irReceiver(&irrecv);
 //---------ARGB--------
 //Handles Neopixel
-LedController pixels(numPixels, LED_Pin, RGBW, NEO_GRBW + NEO_KHZ800, &memory, &transitionHandler);
+LedController pixels(numPixels, LED_Pin, RGB, NEO_RGB + NEO_KHZ800, &memory, &transitionHandler);
 
 //-------------Animation Programs-----------------
 
@@ -100,7 +100,7 @@ void setup()
 
   prideAnimation.begin(&pixels, &memory);
 
-  debug.startTimer(1000);
+  debug.startTimer(10000);
 }
 
 /**
@@ -111,7 +111,7 @@ void processIRData(void);
 
 void loop()
 {
-  if (debug.isTimerReady())
+  /* if (debug.isTimerReady())
   {
     Serial.println(memory.getSavedProgram());
     Serial.println(manager.getCurrentProgram());
@@ -120,7 +120,7 @@ void loop()
     Serial.print(pixels.getBrightness());
 
     debug.startTimer(1000);
-  }
+  } */
 
 
 
@@ -137,7 +137,7 @@ void loop()
   //from one to another color
   transitionHandler.loop();
 
-  //Defines what loop will be executed
+  //Defines what loop and what animation will be executed
   switch (manager.getCurrentProgram())
   {
   case OFF:

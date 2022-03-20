@@ -1,7 +1,7 @@
 /**
  * @file IRReceiver.cpp
  * @author MacaroniDamage
- * @brief summarizes the features
+ * @brief Summarizes the features
  *        of the IRremote libary
  * @version 0.1
  * @date 2020-12-16

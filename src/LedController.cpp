@@ -109,7 +109,7 @@ uint32_t LedController::generateRandomColor()
       randomColorValue = this->gamma32(this->Color(r, g, b));
       break;
     case RGBW:
-      uint8_t w = random(0, 32);
+      uint8_t w = random(0, 255);
       randomColorValue = this->gamma32(this->Color(r, g, b, w));
       break;
     }
@@ -128,12 +128,13 @@ uint8_t LedController::generateRadomPosition()
   return pos;
 }
 
-void LedController::displayArray(uint32_t *frame, uint8_t frameElements, int beginningPosition, boolean override){
+void LedController::displayArray(const uint32_t *frame, uint8_t frameElements, int beginningPosition, boolean override){
   uint8_t frameIndex = 0;
   for (uint8_t i = 0; i < this->numPixels(); i++)
   { 
     if(i >= beginningPosition && i < beginningPosition+frameElements){
-      this->setPixelColor(i, frame[frameIndex]);
+      uint32_t pixelToSet = pgm_read_dword_near(frame+frameIndex);
+      this->setPixelColor(i, pixelToSet);
       frameIndex++;
     }else{
       if(override == true)
@@ -143,7 +144,7 @@ void LedController::displayArray(uint32_t *frame, uint8_t frameElements, int beg
   this->show();
 }
 
-void LedController::displayArrayStrech(uint32_t *frame, uint8_t frameElements){
+void LedController::displayArrayStrech(const uint32_t *frame, uint8_t frameElements){
   uint8_t frameIndex = 0;
   uint8_t fragmentIndex = 0;
   uint8_t fragmentLenght = this->numPixels()/frameElements;
@@ -153,7 +154,10 @@ void LedController::displayArrayStrech(uint32_t *frame, uint8_t frameElements){
       frameIndex++;
       fragmentIndex = 0;
     }
-    this->setPixelColor(i, frame[frameIndex]);
+    //this->setPixelColor(i, frame[frameIndex]);
+    //Reads the data from the program memory
+    uint32_t pixelToSet = pgm_read_dword_near(frame+frameIndex);
+    this->setPixelColor(i, pixelToSet);
     fragmentIndex++;
   }
   this->show();
@@ -186,6 +190,6 @@ void LedController::loop()
 {
   if (brighnessSaveTimer.isTimerReady())
   {
-    _pMemory->storeBrightness(this->brightnessToSave, "LedControl");
+    _pMemory->storeBrightness(this->brightnessToSave);
   }
 }

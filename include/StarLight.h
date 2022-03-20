@@ -16,6 +16,7 @@
 #include "Timer.h"
 #include "LedController.h"
 #include "TransitionHandler.h"
+#include <avr/pgmspace.h>
 
 /**
  * @brief Saves how many stars will be displayed
@@ -33,6 +34,38 @@ enum MoveDirection{
         RIGHT_TO_LEFT,
 };
 
+    /**
+     * @brief Displays a falling star that is white at the front und blue at the end.
+     * 
+     */
+    const uint32_t blueFallingStar [8] PROGMEM= {16777215 , 3394815 , 26367 , 13260 , 153 , 0 , 0 , 0};
+    const uint32_t blueFallingStarM [8] PROGMEM= {0,0,0, 153,13260, 26367 ,3394815 , 16777215};
+
+    /**
+     * @brief Displays a falling star that is yellow at the front at red at the end
+     * 
+     */
+    const uint32_t orangeFallingStar [8] PROGMEM= {16776960 , 16771072 , 16753152 , 16747264 , 16741376 , 16735488 , 16711680 , 8388608};
+    const uint32_t orangeFallingStarM [8] PROGMEM= {8388608 , 16711680 , 16735488 , 16741376 , 16747264 , 16753152 , 16771072 , 16776960};
+
+    /**
+     * @brief Displays a falling star with rainbow colors
+     * 
+     */
+    const uint32_t rainbowFallingStar [8] PROGMEM= {16711680 , 16753920 , 16776960 , 32768 , 255 , 4915330 , 15631086 , 0};
+
+    /**
+     * @brief Displays a falling star with eight white nouances
+     * 
+     */
+    const uint32_t whiteFallingStar [8] PROGMEM= {16777215 , 13027014 , 11184810 , 9342606 , 7434609 , 5592405 , 3750201 , 1842204};
+
+    /**
+     * @brief Displays a falling star with eight white nouances but for rgba stripes
+     * 
+     */
+    //const uint32_t whiteFallingStarRGBW [8] PROGMEM= {4278190080 , 3321888768 , 2852126720 , 2382364672 , 1895825408 , 1426063360 , 956301312 , 469762048};
+
 class StarLight
 {
 private:
@@ -47,7 +80,7 @@ private:
      * @brief Defines when a new falling star will be casted
      * 
      */
-    const uint32_t CAST_NEXT_FALLING_STAR = 180000;
+    const uint32_t CAST_NEXT_FALLING_STAR = 60000;
 
 
      
@@ -71,39 +104,9 @@ private:
      *        variable to display the choosen star.
      * 
      */
-    uint32_t* choosenType;
+    const uint32_t* choosenType;
 
-    /**
-     * @brief Displays a falling star that is white at the front und blue at the end.
-     * 
-     */
-    uint32_t blueFallingStar [8] = {_pController->Color(255,255,255), _pController->Color(51, 204, 255), _pController->Color(0, 102, 255), _pController->Color(0, 51, 204), _pController->Color(0, 0, 153), 0,0,0};
-     uint32_t blueFallingStarM [8] = {0,0,0, _pController->Color(0, 0, 153), _pController->Color(0, 51, 204),_pController->Color(0, 102, 255),_pController->Color(51, 204, 255),_pController->Color(255,255,255)};
 
-    /**
-     * @brief Displays a falling star that is yellow at the front at red at the end
-     * 
-     */
-    uint32_t orangeFallingStar [8] = {_pController->Color(255,255,0), _pController->Color(255,232,0),_pController->Color(255,162,0),_pController->Color(255,139,0),_pController->Color(255,116,0),_pController->Color(255,93,0),_pController->Color(255,0,0),_pController->Color(128,0,0)};
-    uint32_t orangeFallingStarM [8] = {_pController->Color(128,0,0),_pController->Color(255,0,0),_pController->Color(255,93,0),_pController->Color(255,116,0),_pController->Color(255,139,0),_pController->Color(255,162,0), _pController->Color(255,232,0),_pController->Color(255,255,0)};
-
-    /**
-     * @brief Displays a falling star with rainbow colors
-     * 
-     */
-    uint32_t rainbowFallingStar [8] = {_pController->Color(255, 0, 0), _pController->Color(255, 165, 0), _pController->Color(255, 255, 0), _pController->Color(0, 128, 0), _pController->Color(0, 0, 255), _pController->Color(75, 0, 130), _pController->Color(238, 130, 238),0};
-
-    /**
-     * @brief Displays a falling star with eight white nouances
-     * 
-     */
-    uint32_t whiteFallingStar [8] = {_pController->Color(255,255,255), _pController->Color(198,198,198), _pController->Color(170,170,170), _pController->Color(142,142,142), _pController->Color(113,113,113), _pController->Color(85,85,85), _pController->Color(57,57,57), _pController->Color(28,28,28)};
-
-    /**
-     * @brief Displays a falling star with eight white nouances but for rgba stripes
-     * 
-     */
-    uint32_t whiteFallingStarRGBW [8] = {_pController->Color(0,0,0, 255), _pController->Color(0,0,0,198), _pController->Color(0,0,0,170), _pController->Color(0,0,0,142), _pController->Color(0,0,0,113), _pController->Color(0,0,0,85), _pController->Color(0,0,0,57), _pController->Color(0,0,0,28)};
 
     /**
      * @brief GENERATE_STARS generates the new random positions for the frame and refreshes the timer
@@ -186,9 +189,9 @@ private:
      * @brief Generates a number between 0 and 4 and chooses a meteor type according what was generated
      *        and what type of led stripe is used.
      * 
-     * @return uint32_t* - Returns the first address of the falling star array
+     * @return const uint32_t* - Returns the first address of the falling star array
      */
-    uint32_t* chooseFallingStar();
+    const uint32_t* chooseFallingStar();
 
     /**
      * @brief Generates a random number between 1 and 10 and returns a MoveDirection enum
